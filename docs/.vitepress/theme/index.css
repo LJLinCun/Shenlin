@@ -1,0 +1,15 @@
+/* Custom styles for personal blog */
+:root {
+  --vp-c-brand-1: #2563eb;
+  --vp-c-brand-2: #1d4ed8;
+}
+
+.dark .vp-doc a {
+  color: #93c5fd !important;
+}
+
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3 {
+  font-weight: 700;
+}

@@ -1,0 +1,16 @@
+{
+  "name": "lincun-blog",
+  "private": true,
+  "version": "1.0.0",
+  "description": "林寸的个人博客",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "vitepress": "^1.6.4",
+    "@vueuse/core": "^13.9.0"
+  }
+}
