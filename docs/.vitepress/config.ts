@@ -13,6 +13,7 @@ export default defineConfig({
   lastUpdated: true,
   cleanUrls: true,
   metaChunk: true,
+  outDir: '../dist',
 
   sitemap: {
     hostname: SITE_URL,
