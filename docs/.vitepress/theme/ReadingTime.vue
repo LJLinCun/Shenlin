@@ -1,0 +1,26 @@
+<script setup lang="ts">
+import { onMounted, ref, computed } from 'vue'
+
+export interface Props {
+  words?: number
+}
+const props = withDefaults(defineProps<Props>(), {
+  words: () => Math.floor(Math.random() * 2000) + 500,
+})
+
+const readingMinutes = computed(() => {
+  const perMinute = 300
+  return Math.max(1, Math.ceil(props.words / perMinute))
+})
+</script>
+
+<template>
+  <span class="reading-time">📖 {{ readingMinutes }} 分钟阅读</span>
+</template>
+
+<style scoped>
+.reading-time {
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+}
+</style>

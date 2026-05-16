@@ -1,5 +1,9 @@
 node_modules/
 dist/
 docs/.vitepress/cache/
+docs/.vitepress/dist/
 *.local
+*.bak
 .DS_Store
+next-env.d.ts
+tsconfig.tsbuildinfo
