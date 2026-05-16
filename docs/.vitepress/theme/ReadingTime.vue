@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue'
+import { computed } from 'vue'
 
 export interface Props {
   words?: number

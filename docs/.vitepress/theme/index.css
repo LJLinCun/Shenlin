@@ -18,6 +18,16 @@
 .vp-doc h1, .vp-doc h2, .vp-doc h3, .vp-doc h4 {
   font-weight: 700;
   line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.vp-doc p {
+  line-height: 2;
+  margin: 1em 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .vp-doc h1 {
