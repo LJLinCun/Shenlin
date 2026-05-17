@@ -4,7 +4,9 @@ description: 欢迎来到我的第一个博客。说说我是谁，这个博客�
 date: '2025-12-01'
 sidebar: false
 prev: false
-next: /posts/getting-started-with-nextjs
+next:
+  text: 'Next.js App Router 入门实战'
+  link: /posts/getting-started-with-nextjs
 ---
 
 # Hello World

@@ -3,8 +3,12 @@ title: Next.js App Router 入门实战
 description: 从路由到数据获取，完整掌握 Next.js App Router 的核心概念与最佳实践。
 date: '2025-12-15'
 sidebar: false
-prev: /posts/hello-world
-next: /posts/tailwind-css-tips
+prev:
+  text: 'Hello World'
+  link: /posts/hello-world
+next:
+  text: 'Tailwind CSS v4 配置技巧与实战'
+  link: /posts/tailwind-css-tips
 ---
 
 # Next.js App Router 入门实战

@@ -3,7 +3,9 @@ title: Next.js API 路由实战：RESTful 设计
 description: 用 Next.js Route Handlers 构建完整的 CRUD API，包含错误处理、参数验证和分页。
 date: '2026-02-10'
 sidebar: false
-prev: /posts/typescript-type-tips
+prev:
+  text: 'TypeScript 类型体操：实用技巧与常见陷阱'
+  link: /posts/typescript-type-tips
 next: false
 ---
 

@@ -3,8 +3,12 @@ title: Tailwind CSS v4 配置技巧与实战
 description: 从 Tailwind v4 的变化讲起，分享 Next.js + Tailwind 的最佳实践和常见陷阱。
 date: '2025-12-28'
 sidebar: false
-prev: /posts/getting-started-with-nextjs
-next: /posts/react-server-components
+prev:
+  text: 'Next.js App Router 入门实战'
+  link: /posts/getting-started-with-nextjs
+next:
+  text: 'React Server Components 实践笔记'
+  link: /posts/react-server-components
 ---
 
 # Tailwind CSS v4 配置技巧与实战

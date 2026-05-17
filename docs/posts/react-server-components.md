@@ -3,8 +3,12 @@ title: React Server Components 实践笔记
 description: 深入理解 React Server Components（RSC）的工作原理，以及如何判断一个组件该放服务端还是客户端。
 date: '2026-01-10'
 sidebar: false
-prev: /posts/tailwind-css-tips
-next: /posts/typescript-type-tips
+prev:
+  text: 'Tailwind CSS v4 配置技巧与实战'
+  link: /posts/tailwind-css-tips
+next:
+  text: 'TypeScript 类型体操：实用技巧与常见陷阱'
+  link: /posts/typescript-type-tips
 ---
 
 # React Server Components 实践笔记

@@ -3,8 +3,12 @@ title: TypeScript 类型体操：实用技巧与常见陷阱
 description: 告别 any，掌握 TypeScript 的高级类型技巧——联合类型、泛型约束和工具类型的实战用法。
 date: '2026-01-25'
 sidebar: false
-prev: /posts/react-server-components
-next: /posts/nextjs-api-routes
+prev:
+  text: 'React Server Components 实践笔记'
+  link: /posts/react-server-components
+next:
+  text: 'Next.js API 路由实战：RESTful 设计'
+  link: /posts/nextjs-api-routes
 ---
 
 # TypeScript 类型体操：实用技巧与常见陷阱
