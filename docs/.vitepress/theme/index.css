@@ -69,10 +69,6 @@ html {
   max-width: 100%;
 }
 
-.VPNavBarAppearance,
-.VPSwitchAppearance {
-  display: none !important;
-}
 
 .post-grid {
   display: grid;
