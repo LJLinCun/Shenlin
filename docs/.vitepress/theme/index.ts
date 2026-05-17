@@ -2,6 +2,7 @@ import DefaultTheme from 'vitepress/theme'
 import ReadingTime from './ReadingTime.vue'
 import TocSidebar from './TocSidebar.vue'
 import PostCard from './PostCard.vue'
+import ParticlesBg from './components/ParticlesBg.vue'
 import './index.css'
 
 export default {
@@ -10,5 +11,6 @@ export default {
     app.component('ReadingTime', ReadingTime)
     app.component('TocSidebar', TocSidebar)
     app.component('PostCard', PostCard)
+    app.component('ParticlesBg', ParticlesBg)
   }
 }

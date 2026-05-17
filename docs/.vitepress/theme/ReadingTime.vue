@@ -15,12 +15,15 @@ const readingMinutes = computed(() => {
 </script>
 
 <template>
-  <span class="reading-time">📖 {{ readingMinutes }} 分钟阅读</span>
+  <span class="reading-time">{{ readingMinutes }} 分钟阅读</span>
 </template>
 
 <style scoped>
 .reading-time {
   font-size: 0.85rem;
   color: var(--vp-c-text-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 </style>
