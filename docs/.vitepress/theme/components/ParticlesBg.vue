@@ -19,6 +19,8 @@ let particles: Particle[] = []
 let mouseX = 0
 let mouseY = 0
 let ctx: CanvasRenderingContext2D | null = null
+let resizeHandler: (() => void) | null = null
+let mouseHandler: ((e: MouseEvent) => void) | null = null
 
 function resize(cvs: HTMLCanvasElement) {
   cvs.width = window.innerWidth
@@ -29,10 +31,10 @@ function createParticles(count: number, w: number, h: number): Particle[] {
   return Array.from({ length: count }, () => ({
     x: Math.random() * w,
     y: Math.random() * h,
-    vx: (Math.random() - 0.5) * 0.3,
-    vy: -(Math.random() * 0.4 + 0.1),
-    size: Math.random() * 2.5 + 0.5,
-    opacity: Math.random() * 0.4 + 0.2,
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: -(Math.random() * 0.3 + 0.15),
+    size: Math.random() * 3 + 1.5,
+    opacity: Math.random() * 0.5 + 0.3,
   }))
 }
 
@@ -45,7 +47,7 @@ function animate(cvs: HTMLCanvasElement) {
   ctx.clearRect(0, 0, w, h)
 
   for (const p of particles) {
-    p.x += p.vx + (mouseX - w / 2) * 0.0001
+    p.x += p.vx + (mouseX - w / 2) * 0.0002
     p.y += p.vy
     if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w }
     if (p.x < -10) p.x = w + 10
@@ -62,12 +64,12 @@ function animate(cvs: HTMLCanvasElement) {
       const dx = particles[i].x - particles[j].x
       const dy = particles[i].y - particles[j].y
       const dist = Math.sqrt(dx * dx + dy * dy)
-      if (dist < 120) {
+      if (dist < 150) {
         ctx.beginPath()
         ctx.moveTo(particles[i].x, particles[i].y)
         ctx.lineTo(particles[j].x, particles[j].y)
-        ctx.strokeStyle = `rgba(${color}, ${0.08 * (1 - dist / 120)})`
-        ctx.lineWidth = 0.5
+        ctx.strokeStyle = `rgba(${color}, ${0.12 * (1 - dist / 150)})`
+        ctx.lineWidth = 0.8
         ctx.stroke()
       }
     }
@@ -81,25 +83,22 @@ onMounted(() => {
   ctx = canvas.value.getContext('2d')!
   resize(canvas.value)
   particles = createParticles(
-    Math.min(60, Math.floor(window.innerWidth * 0.04)),
+    Math.min(80, Math.floor(window.innerWidth * 0.05)),
     canvas.value.width,
     canvas.value.height,
   )
   animate(canvas.value)
 
-  const onResize = () => { if (canvas.value) resize(canvas.value) }
-  const onMouse = (e: MouseEvent) => { mouseX = e.clientX; mouseY = e.clientY }
-  window.addEventListener('resize', onResize)
-  window.addEventListener('mousemove', onMouse)
-
-  onUnmounted(() => {
-    window.removeEventListener('resize', onResize)
-    window.removeEventListener('mousemove', onMouse)
-  })
+  resizeHandler = () => { if (canvas.value) resize(canvas.value) }
+  mouseHandler = (e: MouseEvent) => { mouseX = e.clientX; mouseY = e.clientY }
+  window.addEventListener('resize', resizeHandler)
+  window.addEventListener('mousemove', mouseHandler)
 })
 
 onUnmounted(() => {
   cancelAnimationFrame(animationId)
+  if (resizeHandler) window.removeEventListener('resize', resizeHandler)
+  if (mouseHandler) window.removeEventListener('mousemove', mouseHandler)
   particles = []
 })
 </script>

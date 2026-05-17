@@ -97,8 +97,8 @@ html {
 }
 
 .post-card:hover {
-  transform: perspective(800px) rotateY(-3deg) rotateX(2deg) translateY(-6px);
-  box-shadow: 0 12px 40px var(--vp-c-glow), 0 4px 12px rgba(0,0,0,0.08);
+  transform: perspective(800px) rotateY(-5deg) rotateX(3deg) translateY(-8px);
+  box-shadow: 0 16px 48px var(--vp-c-glow), 0 4px 12px rgba(0,0,0,0.1);
   border-color: var(--vp-c-brand-1);
 }
 
