@@ -6,7 +6,7 @@ const isDark = useDark()
 </script>
 
 <div class="hero-section">
-  <ParticlesBg />
+  <Hero3D />
   <div class="hero-content">
     <div class="hero-badge">{{ isDark ? '🌙' : '☀️' }} {{ isDark ? '暗色模式' : '亮色模式' }}</div>
     <h1 class="hero-title">你好，我是林寸</h1>
