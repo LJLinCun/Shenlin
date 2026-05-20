@@ -3,7 +3,7 @@ import { createContentLoader } from 'vitepress'
 import { writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-const SITE_URL = 'https://lincun.dev'
+const SITE_URL = 'https://lincun.linjie.online'
 
 export default defineConfig({
   title: '林寸',

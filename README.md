@@ -2,7 +2,7 @@
 
 > 记录前端开发、游戏技术和独立创作的思考与实践。
 
-**地址：** [lincun.dev](https://lincun.dev)（建设中）  
+**地址：** [lincun.linjie.online](https://lincun.linjie.online)  
 **作者：** 林寸（[@LJLinCun](https://github.com/LJLinCun)）  
 **构建工具：** [VitePress](https://vitepress.dev/) 1.6.4  
 **语言：** 中文（zh-CN）
