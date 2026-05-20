@@ -3,7 +3,7 @@
 > 记录前端开发、游戏技术和独立创作的思考与实践。
 
 **地址：** [lincun.dev](https://lincun.dev)（建设中）  
-**作者：** 林寸（[@lincun](https://github.com/lincun)）  
+**作者：** 林寸（[@LJLinCun](https://github.com/LJLinCun)）  
 **构建工具：** [VitePress](https://vitepress.dev/) 1.6.4  
 **语言：** 中文（zh-CN）
 
@@ -66,7 +66,7 @@
 ## 项目结构
 
 ```
-lincun-blog/
+shenlin/
 ├── docs/                           # 文档源文件目录（VitePress 核心目录）
 │   ├── .vitepress/                 # VitePress 配置和主题
 │   │   ├── config.ts              # 站点配置：导航、侧边栏、社交链接
@@ -117,7 +117,7 @@ lincun-blog/
 
 ```bash
 # 进入项目目录
-cd lincun-blog
+cd shenlin
 
 # 安装依赖
 npm install
@@ -268,7 +268,7 @@ sidebar: [
 
 ```ts
 socialLinks: [
-  { icon: 'github', link: 'https://github.com/lincun' },
+    { icon: 'github', link: 'https://github.com/LJLinCun' },
   { icon: 'twitter', link: 'https://x.com/lincun_dev' }
 ]
 ```

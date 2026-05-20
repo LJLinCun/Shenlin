@@ -30,6 +30,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '文章', link: '/posts/' },
+      { text: '标签', link: '/tags/' },
       { text: '关于我', link: '/about/' },
     ],
 
@@ -37,11 +38,18 @@ export default defineConfig({
       {
         text: '文章',
         items: [
+          { text: 'Three.js + WebGPU 2026：网页3D新纪元', link: '/posts/threejs-webgpu-2026' },
           { text: 'Next.js App Router 入门实战', link: '/posts/getting-started-with-nextjs' },
           { text: 'Tailwind CSS v4 配置技巧与实战', link: '/posts/tailwind-css-tips' },
           { text: 'React Server Components 实践笔记', link: '/posts/react-server-components' },
           { text: 'TypeScript 类型体操：实用技巧与常见陷阱', link: '/posts/typescript-type-tips' },
           { text: 'Next.js API 路由实战：RESTful 设计', link: '/posts/nextjs-api-routes' },
+        ],
+      },
+      {
+        text: '更多',
+        items: [
+          { text: '🏷️ 标签', link: '/tags/' },
         ],
       },
     ],
@@ -59,7 +67,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/lincun' },
+      { icon: 'github', link: 'https://github.com/LJLinCun' },
       { icon: 'twitter', link: 'https://x.com/lincun_dev' },
     ],
 
