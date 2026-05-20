@@ -4,6 +4,132 @@
   --vp-c-brand-3: #7c3aed;
   --vp-c-glow: rgba(37, 99, 235, 0.15);
   --vp-c-glow-dark: rgba(37, 99, 235, 0.08);
+  --vp-code-font-size: 0.9em;
+  --vp-code-line-height: 1.6;
+}
+
+/* ========== 渐变品牌色过渡 ========== */
+.vp-doc a {
+  transition: all 0.2s ease;
+}
+
+/* ========== 增强代码块 ========== */
+.vp-doc div[class*='language-'] {
+  border-radius: 10px;
+  margin: 1.5rem 0 !important;
+  border: 1px solid var(--vp-c-divider);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.dark .vp-doc div[class*='language-'] {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.vp-doc div[class*='language-'] pre {
+  padding: 1.25rem 1.5rem;
+}
+
+/* 行号美化 */
+.vp-doc .line-numbers-wrapper {
+  padding-top: 1.25rem;
+  border-right: 1px solid var(--vp-c-divider);
+  margin-right: 1rem;
+}
+
+/* 代码块复制按钮位置修正 */
+.vp-doc .copy {
+  top: 8px;
+  right: 8px;
+}
+
+/* ========== 增强引用块 ========== */
+.vp-doc blockquote {
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--vp-c-brand-1);
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.dark .vp-doc blockquote {
+  background: rgba(147, 197, 253, 0.06);
+}
+
+/* ========== 表格美化 ========== */
+.vp-doc table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.vp-doc th {
+  background: var(--vp-c-bg-soft);
+  font-weight: 600;
+}
+
+/* ========== 图片 ========== */
+.vp-doc img {
+  border-radius: 10px;
+  max-width: 100%;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.vp-doc img:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+/* ========== 页脚增强 ========== */
+.VPFooter {
+  border-top: 1px solid var(--vp-c-divider);
+  padding: 2rem 0 !important;
+}
+
+.VPFooter .container {
+  text-align: center;
+  color: var(--vp-c-text-3);
+  font-size: 0.85rem;
+}
+
+.VPFooter .social-links {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.VPFooter .social-links a {
+  color: var(--vp-c-text-3);
+  transition: color 0.2s ease;
+}
+
+.VPFooter .social-links a:hover {
+  color: var(--vp-c-brand-1);
+}
+
+/* ========== 标题锚点平滑 ========== */
+.vp-doc .header-anchor {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.vp-doc h1:hover .header-anchor,
+.vp-doc h2:hover .header-anchor,
+.vp-doc h3:hover .header-anchor {
+  opacity: 1;
+}
+
+/* ========== 选择文本样式 ========== */
+::selection {
+  background: rgba(37, 99, 235, 0.2);
+}
+
+.dark ::selection {
+  background: rgba(147, 197, 253, 0.25);
+}
+
+/* ========== 暗色模式平滑过渡 ========== */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .vp-doc {
@@ -80,109 +206,12 @@ html {
   .post-grid { grid-template-columns: 1fr; }
 }
 
-.post-card {
-  display: block;
-  padding: 1.5rem 2rem;
-  background: var(--vp-c-bg-soft);
-  border-radius: 12px;
-  text-decoration: none;
-  border: 1px solid var(--vp-c-divider);
-  perspective: 800px;
-  transform-style: preserve-3d;
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease, border-color 0.3s ease;
-}
-
-.post-card:hover {
-  transform: perspective(800px) rotateY(-5deg) rotateX(3deg) translateY(-8px);
-  box-shadow: 0 16px 48px var(--vp-c-glow), 0 4px 12px rgba(0,0,0,0.1);
-  border-color: var(--vp-c-brand-1);
-}
-
-.dark .post-card:hover {
-  box-shadow: 0 12px 40px var(--vp-c-glow-dark), 0 4px 12px rgba(0,0,0,0.3);
-}
-
-.post-card h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-  transform: translateZ(24px);
-  transition: color 0.3s ease;
-}
-
-.post-card:hover h3 {
-  color: var(--vp-c-brand-1);
-}
-
-.date {
-  font-size: 0.85rem;
-  color: var(--vp-c-text-3);
-  transform: translateZ(16px);
-  display: inline-block;
-}
-
-.desc {
-  margin: 0.75rem 0 0;
-  font-size: 0.9rem;
-  color: var(--vp-c-text-2);
-  line-height: 1.6;
-  transform: translateZ(12px);
-}
-
-.tag-group { display: flex; gap: 0.4rem; margin-top: 0.75rem; flex-wrap: wrap; transform: translateZ(8px); }
-
-.tag {
-  font-size: 0.8rem;
-  color: var(--vp-c-brand-1);
-  background: rgba(37, 99, 235, 0.1);
-  padding: 0.1rem 0.5rem;
-  border-radius: 4px;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.post-card:hover .tag {
-  background: rgba(37, 99, 235, 0.18);
-}
-
-.dark .tag {
-  color: #93c5fd;
-  background: rgba(147, 197, 253, 0.1);
-}
-
 .dark .vp-doc a {
   color: #93c5fd !important;
 }
 
 .dark .vp-doc blockquote {
   background-color: rgba(255, 255, 255, 0.04);
-}
-
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.post-card {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out, box-shadow 0.4s ease, border-color 0.3s ease;
-}
-
-.post-card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.VPContent .container {
-  position: relative;
-  z-index: 1;
 }
 
 .VPHome {
@@ -242,6 +271,7 @@ html {
   animation: heroFadeIn 0.8s ease-out 0.3s both;
 }
 
+/* ========== 3D Button ========== */
 .hero-btn {
   padding: 0.85rem 2.25rem;
   border-radius: 12px;
@@ -250,47 +280,106 @@ html {
   font-weight: 700;
   font-size: 1.05rem;
   letter-spacing: 0.04em;
-  transition: all 0.3s ease;
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  transform: translateY(0);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hero-btn-primary {
   background: linear-gradient(135deg, #3b82f6, #8b5cf6);
   color: #fff;
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35);
+  box-shadow:
+    0 4px 14px rgba(59, 130, 246, 0.35),
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+}
+
+.hero-btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  filter: blur(12px);
+  opacity: 0.4;
+  z-index: -1;
+  transform: translateY(4px) scale(0.95);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .hero-btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(59, 130, 246, 0.45);
+  transform: translateY(-4px);
+  box-shadow:
+    0 10px 32px rgba(59, 130, 246, 0.45),
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
   color: #fff;
 }
 
+.hero-btn-primary:hover::before {
+  opacity: 0.6;
+  transform: translateY(8px) scale(0.95);
+}
+
+.hero-btn-primary:active {
+  transform: translateY(2px);
+  box-shadow:
+    0 2px 8px rgba(59, 130, 246, 0.3),
+    inset 0 1px 3px rgba(0, 0, 0, 0.15);
+  transition-duration: 0.05s;
+}
+
+.hero-btn-primary:active::before {
+  opacity: 0.3;
+  transform: translateY(2px) scale(0.95);
+}
+
 .hero-btn-secondary {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.75);
   border: 1.5px solid var(--vp-c-divider);
   color: var(--vp-c-text-1);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(0);
 }
 
 .dark .hero-btn-secondary {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.15);
   color: #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .hero-btn-secondary:hover {
   border-color: #3b82f6;
   color: #3b82f6;
-  transform: translateY(-3px);
-  background: rgba(59, 130, 246, 0.06);
+  transform: translateY(-4px);
+  background: rgba(59, 130, 246, 0.08);
+  box-shadow:
+    0 8px 24px rgba(59, 130, 246, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .dark .hero-btn-secondary:hover {
   border-color: #60a5fa;
   color: #60a5fa;
   background: rgba(96, 165, 250, 0.1);
+  box-shadow: 0 8px 24px rgba(96, 165, 250, 0.1);
+}
+
+.hero-btn-secondary:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  transition-duration: 0.05s;
 }
 
 @keyframes heroFadeIn {
@@ -359,4 +448,71 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--vp-c-text-3);
+}
+
+/* ========== GlassNav — 3D 毛玻璃导航 ========== */
+.VPNavBar {
+  backdrop-filter: blur(16px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.2) !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  border-bottom: none !important;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.03),
+    0 8px 24px rgba(0, 0, 0, 0.02) !important;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark .VPNavBar {
+  background: rgba(26, 26, 46, 0.7) !important;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    0 8px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Nav items 3D lift */
+.VPNavBar .VPNavBarMenuLink,
+.VPNavBar .VPNavBarMenuGroup .button,
+.VPNavBar .VPNavBarExtra .item {
+  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1),
+              text-shadow 0.2s ease !important;
+}
+
+.VPNavBar .VPNavBarMenuLink:hover,
+.VPNavBar .VPNavBarMenuGroup .button:hover,
+.VPNavBar .VPNavBarExtra .item:hover {
+  transform: translateY(-1px);
+  text-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+}
+
+.dark .VPNavBar .VPNavBarMenuLink:hover,
+.dark .VPNavBar .VPNavBarMenuGroup .button:hover,
+.dark .VPNavBar .VPNavBarExtra .item:hover {
+  text-shadow: 0 2px 8px rgba(147, 197, 253, 0.2);
+}
+
+/* Scroll-triggered backdrop change */
+.VPNavBar:not(.has-sidebar) .container {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: backdrop-filter 0.3s ease;
+}
+
+@media (min-width: 960px) {
+  .VPNavBar:not(.top) {
+    backdrop-filter: blur(20px) saturate(1.4) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      0 4px 16px rgba(0, 0, 0, 0.05),
+      0 12px 32px rgba(0, 0, 0, 0.03) !important;
+  }
+
+  .dark .VPNavBar:not(.top) {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.2),
+      0 4px 16px rgba(0, 0, 0, 0.12),
+      0 12px 32px rgba(0, 0, 0, 0.08) !important;
+  }
 }

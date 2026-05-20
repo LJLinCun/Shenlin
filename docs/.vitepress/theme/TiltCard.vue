@@ -46,13 +46,16 @@ function animate() {
   currentX.value += (targetX.value - currentX.value) * 0.1
   currentY.value += (targetY.value - currentY.value) * 0.1
   if (cardEl.value) {
+    const tilt = isHovering.value ? '' : ''
     cardEl.value.style.transform = `perspective(1200px) rotateX(${currentX.value}deg) rotateY(${currentY.value}deg)`
+    // Shadow offset opposite to tilt
     const sx = -(currentY.value / MAX_TILT) * 12
     const sy = (currentX.value / MAX_TILT) * 12
     const shadowBlur = isHovering.value ? 32 : 16
     const shadowAlpha = isHovering.value ? (isDark.value ? 0.35 : 0.18) : (isDark.value ? 0.15 : 0.08)
     const brandShadow = isHovering.value ? (isDark.value ? 'rgba(37,99,235,0.15)' : 'rgba(37,99,235,0.20)') : 'transparent'
     cardEl.value.style.boxShadow = `${sx}px ${sy}px ${shadowBlur}px rgba(0,0,0,${shadowAlpha}), ${sx * 2}px ${sy * 2}px ${shadowBlur * 1.5}px ${brandShadow}`
+    // Shine position
     if (shineEl.value) {
       const shX = 50 + (currentY.value / MAX_TILT) * 30
       const shY = 50 - (currentX.value / MAX_TILT) * 30
@@ -77,6 +80,7 @@ onMounted(() => {
   if (!cardEl.value) return
   cardEl.value.addEventListener('mousemove', onMouseMove)
   cardEl.value.addEventListener('mouseleave', onMouseLeave)
+  // Scroll reveal observer
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
@@ -107,7 +111,10 @@ const formattedDate = computed(() => {
     class="tilt-card"
     @mouseenter="startAnimation"
   >
+    <!-- Shine overlay -->
     <div ref="shineEl" class="tilt-shine" />
+
+    <!-- Layered content -->
     <div class="tilt-layer" data-depth="40">
       <h3 class="tilt-title">{{ post.title }}</h3>
     </div>
@@ -139,6 +146,7 @@ const formattedDate = computed(() => {
   cursor: pointer;
   overflow: hidden;
   transition: border-color 0.3s ease;
+  /* scroll reveal base */
   opacity: 0;
   transform: perspective(1200px) translateY(24px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out,
@@ -163,6 +171,7 @@ const formattedDate = computed(() => {
   border-color: rgba(147, 197, 253, 0.4);
 }
 
+/* ========== Shine ========== */
 .tilt-shine {
   position: absolute;
   inset: 0;
@@ -174,17 +183,30 @@ const formattedDate = computed(() => {
   transition: background 0.05s linear;
 }
 
+/* ========== Layers ========== */
 .tilt-layer {
   position: relative;
   z-index: 1;
   transform-style: preserve-3d;
 }
 
-.tilt-layer[data-depth="40"] { transform: translateZ(40px); }
-.tilt-layer[data-depth="25"] { transform: translateZ(25px); }
-.tilt-layer[data-depth="20"] { transform: translateZ(20px); }
-.tilt-layer[data-depth="15"] { transform: translateZ(15px); }
+.tilt-layer[data-depth="40"] {
+  transform: translateZ(40px);
+}
 
+.tilt-layer[data-depth="25"] {
+  transform: translateZ(25px);
+}
+
+.tilt-layer[data-depth="20"] {
+  transform: translateZ(20px);
+}
+
+.tilt-layer[data-depth="15"] {
+  transform: translateZ(15px);
+}
+
+/* ========== Title ========== */
 .tilt-title {
   margin: 0 0 0.5rem;
   font-size: 1.2rem;
@@ -194,15 +216,22 @@ const formattedDate = computed(() => {
   transition: color 0.3s ease;
 }
 
-.tilt-card:hover .tilt-title { color: var(--vp-c-brand-1); }
-.dark .tilt-card:hover .tilt-title { color: #93c5fd; }
+.tilt-card:hover .tilt-title {
+  color: var(--vp-c-brand-1);
+}
 
+.dark .tilt-card:hover .tilt-title {
+  color: #93c5fd;
+}
+
+/* ========== Date ========== */
 .tilt-date {
   font-size: 0.85rem;
   color: var(--vp-c-text-3);
   display: inline-block;
 }
 
+/* ========== Description ========== */
 .tilt-desc {
   margin: 0.75rem 0 0;
   font-size: 0.9rem;
@@ -210,6 +239,7 @@ const formattedDate = computed(() => {
   line-height: 1.6;
 }
 
+/* ========== Tags ========== */
 .tilt-tag-group {
   display: flex;
   gap: 0.4rem;
@@ -226,10 +256,20 @@ const formattedDate = computed(() => {
   transition: background 0.2s ease, color 0.2s ease;
 }
 
-.tilt-card:hover .tilt-tag { background: rgba(37, 99, 235, 0.18); }
-.dark .tilt-tag { color: #93c5fd; background: rgba(147, 197, 253, 0.1); }
-.dark .tilt-card:hover .tilt-tag { background: rgba(147, 197, 253, 0.18); }
+.tilt-card:hover .tilt-tag {
+  background: rgba(37, 99, 235, 0.18);
+}
 
+.dark .tilt-tag {
+  color: #93c5fd;
+  background: rgba(147, 197, 253, 0.1);
+}
+
+.dark .tilt-card:hover .tilt-tag {
+  background: rgba(147, 197, 253, 0.18);
+}
+
+/* ========== Backface Gloss ========== */
 .tilt-card::after {
   content: '';
   position: absolute;
@@ -238,10 +278,20 @@ const formattedDate = computed(() => {
   pointer-events: none;
   z-index: 0;
   backface-visibility: hidden;
-  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.0) 40%, rgba(255,255,255,0.02) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.0) 40%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
 }
 
 .dark .tilt-card::after {
-  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 40%, rgba(37,99,235,0.03) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    transparent 40%,
+    rgba(37, 99, 235, 0.03) 100%
+  );
 }
 </style>

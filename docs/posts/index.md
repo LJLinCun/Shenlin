@@ -1,6 +1,10 @@
 # 归档
 
 <div class="archive-list">
+  <a href="/posts/threejs-webgpu-2026" class="archive-item">
+    <span class="archive-date">2026-05-19</span>
+    <span class="archive-title">Three.js + WebGPU 2026：网页3D新纪元</span>
+  </a>
   <a href="/posts/getting-started-with-nextjs" class="archive-item">
     <span class="archive-date">2025-12-15</span>
     <span class="archive-title">Next.js App Router 入门实战</span>

@@ -11,7 +11,8 @@
     "deploy": "vitepress build docs"
   },
   "dependencies": {
-    "vitepress": "^1.6.4",
-    "@vueuse/core": "^13.9.0"
+    "@vueuse/core": "^14.3.0",
+    "three": "^0.184.0",
+    "vitepress": "^1.6.4"
   }
 }
