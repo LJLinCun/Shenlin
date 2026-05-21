@@ -3,86 +3,72 @@ import { onMounted, onBeforeUnmount } from 'vue'
 
 let sections: HTMLElement[] = []
 let animationId = 0
+let lastScrollY = 0
 
 function getContentBlocks(): HTMLElement[] {
   const doc = document.querySelector('.vp-doc')
   if (!doc) return []
-
-  const blocks = doc.querySelectorAll<HTMLElement>(
-    'h1, h2, h3, p, blockquote, div[class*="language-"], ul, ol, hr, .code-demo, .model-viewer-wrapper'
-  )
-  return Array.from(blocks).filter(el => el.offsetHeight >= 10)
+  return Array.from(doc.querySelectorAll<HTMLElement>(
+    'h2, p, blockquote, div[class*="language-"], .code-demo'
+  )).filter(el => el.offsetHeight >= 20)
 }
 
-function apply3DEffect() {
+function applyEffect() {
   const viewCenter = window.innerHeight / 2
+  let changed = false
 
   sections.forEach((el) => {
     const rect = el.getBoundingClientRect()
     const elCenter = rect.top + rect.height / 2
     const distFromCenter = elCenter - viewCenter
-
-    // Normalize: -1 (top edge) to +1 (bottom edge)
-    const maxDist = window.innerHeight * 0.5
+    const maxDist = window.innerHeight * 0.6
     const normDist = Math.max(-1, Math.min(1, distFromCenter / maxDist))
 
-    // Tilt: 0 at center, up to ±20° at edges
-    const tiltAngle = normDist * 20
+    // Very subtle: max ±3° tilt at edges
+    const tilt = normDist * 3
+    // Subtle Z offset: max 15px
+    const zOff = -Math.abs(normDist) * 15
+    // Shadow slightly stronger at center
+    const shadowB = 4 + (1 - Math.abs(normDist)) * 6
+    const shadowA = 0.03 + (1 - Math.abs(normDist)) * 0.04
 
-    // Z offset: elements at edges appear further back
-    const zOffset = -Math.abs(normDist) * 80
-
-    // Scale: center elements slightly larger (1.02), edge elements normal
-    const scale = 1 + (1 - Math.abs(normDist)) * 0.02
-
-    // Opacity: full at center, slightly faded at edges
-    const opacity = 1 - Math.abs(normDist) * 0.12
-
-    // Shadow: stronger at center
-    const shadowBlur = 4 + (1 - Math.abs(normDist)) * 12
-    const shadowOpacity = 0.03 + (1 - Math.abs(normDist)) * 0.07
-
-    el.style.setProperty('transform',
-      `perspective(1200px) rotateX(${tiltAngle}deg) translateZ(${zOffset}px) scale(${scale})`,
-      'important'
-    )
-    el.style.setProperty('opacity', String(opacity), 'important')
-    el.style.setProperty('box-shadow',
-      `0 ${(1 - Math.abs(normDist)) * 6 + 1}px ${shadowBlur}px rgba(0,0,0,${shadowOpacity})`,
-      'important'
-    )
-    el.style.setProperty('transition', 'transform 0.15s ease-out, opacity 0.15s ease-out, box-shadow 0.15s ease-out')
-    el.style.setProperty('transform-style', 'preserve-3d')
-    el.style.setProperty('will-change', 'transform, opacity')
+    const transform = `perspective(2000px) rotateX(${tilt}deg) translateZ(${zOff}px)`
+    if (el.style.transform !== transform) {
+      el.style.transform = transform
+      changed = true
+    }
+    
+    const shadow = `0 ${(1 - Math.abs(normDist)) * 3 + 1}px ${shadowB}px rgba(0,0,0,${shadowA})`
+    if (el.style.boxShadow !== shadow) {
+      el.style.boxShadow = shadow
+    }
   })
+  
+  return changed
 }
 
 function animate() {
+  const scrollY = window.scrollY
+  if (Math.abs(scrollY - lastScrollY) > 1) {
+    applyEffect()
+    lastScrollY = scrollY
+  }
   animationId = requestAnimationFrame(animate)
-  apply3DEffect()
 }
 
 onMounted(() => {
   if (import.meta.env.SSR) return
-  // Give VitePress time to render
   setTimeout(() => {
     sections = getContentBlocks()
-    if (sections.length > 0) {
-      animate()
-    }
+    if (sections.length > 0) animate()
   }, 500)
 })
 
 onBeforeUnmount(() => {
   cancelAnimationFrame(animationId)
-  // Reset all styles
   sections.forEach((el) => {
-    el.style.removeProperty('transform')
-    el.style.removeProperty('opacity')
-    el.style.removeProperty('box-shadow')
-    el.style.removeProperty('transition')
-    el.style.removeProperty('transform-style')
-    el.style.removeProperty('will-change')
+    el.style.transform = ''
+    el.style.boxShadow = ''
   })
   sections = []
 })
@@ -91,4 +77,3 @@ onBeforeUnmount(() => {
 <template>
   <div />
 </template>
-
