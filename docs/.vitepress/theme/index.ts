@@ -7,7 +7,6 @@ import TocSidebar from './TocSidebar.vue'
 import PostCard from './PostCard.vue'
 import Scroll3DReveal from './Scroll3DReveal.vue'
 import ParticlesBg from './components/ParticlesBg.vue'
-import Hero3D from './Hero3D.vue'
 import ModelViewer3D from './ModelViewer3D.vue'
 import CodeDemo from './CodeDemo.vue'
 import './index.css'
@@ -21,7 +20,6 @@ export default {
     app.component('PostCard', PostCard)
     app.component('Scroll3DReveal', Scroll3DReveal)
     app.component('ParticlesBg', ParticlesBg)
-    app.component('Hero3D', Hero3D)
     app.component('ModelViewer3D', ModelViewer3D)
     app.component('CodeDemo', CodeDemo)
   },

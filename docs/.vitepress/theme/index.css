@@ -516,3 +516,36 @@ html {
       0 12px 32px rgba(0, 0, 0, 0.08) !important;
   }
 }
+
+/* ========== 3D 空间 z-index 层次 ========== */
+.VPLocalNav, .VPNavBar {
+  position: relative;
+  z-index: 2;
+}
+
+.VPContent {
+  position: relative;
+  z-index: 1;
+}
+
+/* 3D 透视空间 */
+.vp-doc {
+  perspective: 1200px;
+  perspective-origin: center top;
+  transform-style: preserve-3d;
+}
+
+/* 发光分隔线 */
+.vp-doc hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--vp-c-brand-1) 25%, 
+    var(--vp-c-brand-3) 50%, 
+    var(--vp-c-brand-1) 75%, 
+    transparent 100%
+  );
+  opacity: 0.3;
+  margin: 2.5rem 0;
+}

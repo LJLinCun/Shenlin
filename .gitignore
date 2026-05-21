@@ -7,3 +7,4 @@ docs/.vitepress/dist/
 .DS_Store
 next-env.d.ts
 tsconfig.tsbuildinfo
+docs/.vitepress/theme/_archive/

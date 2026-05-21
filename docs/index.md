@@ -6,7 +6,6 @@ const isDark = useDark()
 </script>
 
 <div class="hero-section">
-  <Hero3D />
   <Scroll3DReveal direction="up" :distance="30">
     <div class="hero-content">
       <div class="hero-badge">{{ isDark ? '🌙' : '☀️' }} {{ isDark ? '暗色模式' : '亮色模式' }}</div>
